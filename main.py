@@ -13,9 +13,9 @@ from os.path import join as pjoin
 
 import tensorflow as tf
 
-config = tf.ConfigProto()
+config = tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth = True
-tf.Session(config=config)
+tf.compat.v1.Session(config=config)
 
 from utils.math_graph import *
 from data_loader.data_utils import *
@@ -57,7 +57,7 @@ else:
 L = scaled_laplacian(W)
 # Alternative approximation method: 1st approx - first_approx(W, n).
 Lk = cheb_poly_approx(L, Ks, n)
-tf.add_to_collection(name='graph_kernel', value=tf.cast(tf.constant(Lk), tf.float32))
+tf.compat.v1.add_to_collection(name='graph_kernel', value=tf.cast(tf.constant(Lk), tf.float32))
 
 # Data Preprocessing
 data_file = f'PeMSD7_V_{n}.csv'
