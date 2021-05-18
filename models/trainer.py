@@ -30,6 +30,9 @@ def model_train(inputs, blocks, args, sum_path='./output/tensorboard'):
     x = tf.placeholder(tf.float32, [None, n_his + 1, n, 1], name='data_input')
     keep_prob = tf.placeholder(tf.float32, name='keep_prob')
 
+    x = tf.constant(inputs.get_data('train'), dtype=tf.float32)[0:1000]
+    keep_prob = tf.constant(1.0)
+
     # Define model loss
     train_loss, pred = build_model(x, n_his, Ks, Kt, blocks, keep_prob)
     tf.summary.scalar('train_loss', train_loss)
