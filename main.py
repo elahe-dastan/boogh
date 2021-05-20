@@ -47,7 +47,8 @@ print(f'Training configs: {args}')
 n, n_his, n_pred = args.n_route, args.n_his, args.n_pred
 Ks, Kt = args.ks, args.kt
 # blocks: settings of channel size in st_conv_blocks / bottleneck design
-blocks = [[1, 32, 64], [64, 32, 128]]
+# blocks = [[1, 32, 64], [64, 32, 128]]
+blocks = [[1, 1, 64], [64, 32, 128]]
 
 # Load wighted adjacency matrix W
 if args.graph == 'default':
@@ -68,7 +69,7 @@ data_file = f't_V_{n}.csv'
 # data_file = f'PeMSD7_V_{n}.csv'
 n_train, n_val, n_test = 1, 0, 0
 # n_train, n_val, n_test = 34, 5, 5
-PeMS = data_gen(pjoin('./dataset', data_file), (n_train, n_val, n_test), n, n_his + n_pred, 96)
+PeMS = data_gen(pjoin('./dataset', data_file), (n_train, n_val, n_test), n, n_his + n_pred, 4)
 # PeMS = data_gen(pjoin('./dataset', data_file), (n_train, n_val, n_test), n, n_his + n_pred)
 print(f'>> Loading dataset with Mean: {PeMS.mean:.2f}, STD: {PeMS.std:.2f}')
 
